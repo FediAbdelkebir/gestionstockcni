@@ -1,0 +1,85 @@
+.param {
+    margin-bottom: 7px;
+    line-height: 1.4;
+}
+.param-inline dt {
+    display: inline-block;
+}
+.param dt {
+    margin: 0;
+    margin-right: 7px;
+    font-weight: 600;
+}
+.param-inline dd {
+    vertical-align: baseline;
+    display: inline-block;
+}
+
+.param dd {
+    margin: 0;
+    vertical-align: baseline;
+} 
+
+.shopping-cart-wrap .price {
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 5px;
+    display: block;
+}
+var {
+    font-style: normal;
+    font-family:Lucida Bright;
+}
+
+.media img {
+    margin-right: 1rem;
+}
+.img-sm {
+    width: 90px;
+    max-height: 75px;
+    object-fit: cover;
+}
+
+    h2{font-weight:800; font-size:30px; color: #f56572; font-family:Lucida Bright; }
+    .btn {
+        position: relative;
+        padding: 12px 30px;
+        margin: .3125rem 1px;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0;
+        cursor: pointer;
+        background-color: transparent;
+        border: 0;
+            border-top-color: currentcolor;
+            border-right-color: currentcolor;
+            border-bottom-color: currentcolor;
+            border-left-color: currentcolor;
+        border-radius: .2rem;
+        transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1);
+        will-change: box-shadow,transform;
+    }
+    input{
+        border:0
+    }
+    .tcenter{text-align: center;}
+    .bgc{ background-color: #1c223f;
+   }
+    .btn-delete{background:
+        #cc2127!important;
+        color:
+        #fff;}
+    .btn-update{background:#0098f0!important;
+        color:
+        #fff;}
+    .btn-confirm{ background: #28a745;color: #fff;}
+    .btn-cancel{background: #ffc107;color: #fff;}
+    .btn-add{background: #f44336!important;color: #fff;}
+    .btn-refresh{background: #212529!important;color: #fff;}
+    .btn-refresh:hover{color: #f44336;}
+    td{background-color: #f5f5f6;font-family:Helvetica;}
+    th{font-family:Lucida Bright;}
+    input{
+        width:100%;
+    }

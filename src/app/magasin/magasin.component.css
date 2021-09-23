@@ -1,0 +1,23 @@
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+.register-block{
+float:left;
+width:100%;
+padding : 50px 0;
+}input{
+    font-size: medium;
+  }
+.banner-sec{background:url(https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)  no-repeat  bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
+.container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);font-size: large;}
+.carousel-inner{border-radius:0 10px 10px 0;}
+.carousel-caption{text-align:left; left:5%;}
+.register-sec{padding: 50px 30px; position:relative;}
+.register-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
+.register-sec .copy-text i{color:#FEB58A;}
+.register-sec .copy-text a{color:#E36262;}
+.register-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #3f4c6b;}
+.register-sec h2:after{content:" "; width:100px; height:5px; background:#3f4c6b; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+.btn-register{background: #3f4c6b; color:#fff;font-size: medium;}
+.banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
+.banner-text h2{color:#fff; font-weight:600;}
+.banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
+.banner-text p{color:#fff;}

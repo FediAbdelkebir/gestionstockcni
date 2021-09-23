@@ -1,0 +1,101 @@
+
+<div class="card my-5 bgc" >
+  
+  <ng-snotify style="color: #fff"></ng-snotify>
+    <div class="card-body bgc">
+      <h2 class="text-center">Géstion Articles</h2>
+      
+<input placeholder="Rechercher..." [(ngModel)]="Filter" style="background-color: #ecf0f1;border:0px;color: #0e1a35;">  
+      <table class="table table-bordered table-striped tcenter" style="margin-left: -1%;">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Label</th>
+            <th scope="col">Description</th>
+            <th scope="col" [hidden]="editmode">Marque</th>
+            <th scope="col" [hidden]="editmode">Type</th>
+            <th scope="col" [hidden]="editmode">Qte Initial</th>
+            <th scope="col" [hidden]="editmode">Qte Courante</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Gestion</th>
+          </tr>     
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of listarticles | filter:Filter;" >
+            <td>{{x.id}}</td>
+            <td>{{x.title}}</td>
+            <td>{{x.label}}</td>
+            <td>{{x.description}}</td>
+            <td [hidden]="editmode"></td>
+            <td [hidden]="editmode"></td>
+            <td [hidden]="editmode"></td>
+            <td [hidden]="editmode"></td>
+            <td>{{x.prix | currency:' ' }} D</td>
+         
+            <td>
+              <button (click)="Modify(x.id,x.title,x.label,x.description,x.prix)" class="btn btn-update"> <i class="fa fa-refresh" ></i></button>
+              <button (click)="Delete(x.id)" class="btn btn-delete"><i class="fa fa-close" ></i></button></td>
+              <br>
+          </tr>
+          <tr [hidden]="editmode" >
+            <td class="update" style="background-color:#0e1a35"></td>
+            <td ><input type="text"[(ngModel)]="article.title" (ngModelChange)="AT(article.title);Cansave();" required placeholder="Titre">
+              <small *ngIf="!articletitle" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide</small></td>
+            <td ><input type="text"[(ngModel)]="article.label" (ngModelChange)="AL(article.label);Cansave()" required placeholder="Label">
+              <small *ngIf="!articlelabel" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide</small></td>
+            <td ><textarea [(ngModel)]="article.description" (ngModelChange)="AD(article.description);Cansave()"required placeholder="Description"></textarea>  
+              <small *ngIf="!articledescription" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide</small></td>
+              
+              <td> 
+                <select Style="width: 80px;" >
+                  <option *ngFor="let x of listfamille" Style="font-size: 15px;width:80px" >{{x.nomFamille}}</option>
+                </select>
+              </td>
+              
+              <td> 
+                <select Style="width: 80px;">
+                  <option *ngFor="let y of listsousfamille" Style="font-size: 15px;width: 80px;">{{y.nomSousFamille}}</option>
+                </select>
+              </td>
+
+              <td ><input type="number" [(ngModel)]="Stockqti" (ngModelChange)="Cansave()"required placeholder="Quantité Initial" style="width: 80px;">
+                <small *ngIf="Stockqti<1" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide ou Saisire Un Nombre</small></td>
+
+                <td ><input type="number" [(ngModel)]="Stockqt" (ngModelChange)="Cansave()"required placeholder="Quantité Courrante" style="width: 80px;">
+                  <small *ngIf="Stockqt<1" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide ou Saisire Un Nombre</small></td>
+
+            <td ><input type="number" [(ngModel)]="article.prix" (ngModelChange)="Cansave()" min="1" required placeholder="Prix" style="width: 80px;">
+              <small *ngIf="(article.prix<1)" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide ou Saisire Un Nombre</small></td>
+            <td><button (click)="save()" class="btn btn-confirm" [disabled]="cansave"><i class="fa fa-check" ></i></button> <button (click)="cancel()" class="btn btn-cancel" ><i class="fa fa-close" ></i></button>
+            </td>
+      </tr>
+          <tr [@bounce] [hidden]="edit" >
+            <td class="update" style="background-color: #0098f0;"> {{id}}</td>
+            <td ><input type="text"[(ngModel)]="newtitle" (ngModelChange)="NAT(newtitle);Canupdate()" required placeholder="Nouvaux Titre">
+              <small *ngIf="!newarticletitle" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide ou Saisire Un Nombre</small></td>
+            <td ><input type="text"[(ngModel)]="newlabel" (ngModelChange)="NAL(newlabel);Canupdate()" required placeholder="Nouvaux Label">
+              <small *ngIf="!newarticlelabel" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide ou Saisire Un Nombre</small></td>
+            <td ><input type="text"[(ngModel)]="newdescription" (ngModelChange)="NAD(newdescription);Canupdate()" required placeholder="Nouvaux Description">
+              <small *ngIf="!newarticledescription" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide ou Saisire Un Nombre</small></td>
+            <td ><input type="number"[(ngModel)]="newprix" (ngModelChange)="NAP(newprix);Canupdate()" required placeholder="Nouvaux Prix">
+              <small *ngIf="!newarticleprix" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide ou Saisire Un Nombre</small></td>
+            <td><button (click)="update(id)" class="btn btn-confirm" [disabled]="canupdate"><i class="fa fa-check" ></i></button>
+              <button (click)="cancel()" class="btn btn-cancel" ><i class="fa fa-close" ></i></button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+      <div><button (click)="ajouter()" class="btn btn-delete" [disabled]="disableBtn" ><i class="fa fa-plus" style="color: #1f2837;"></i> Ajouter Article</button></div>
+    </div>
+    
+  </div>
+<div> 
+  <i class="fa fa-refresh" style="font-size: large;color: #fff;" (click)="refresh()"></i>
+  
+</div>
+<ngx-spinner
+    name="Stat"
+  >

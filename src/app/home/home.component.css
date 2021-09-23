@@ -1,0 +1,91 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+    border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);
+   
+}
+
+.sidenav {
+    height: 100%;
+    background-image: url(background.jpg);background-size:cover;
+    overflow-x: hidden;
+    padding-top: 20px;
+    background-repeat: no-repeat;
+}
+
+
+.main {
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
+
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+    }
+
+    .register-form{
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 65%; 
+        margin-top: 10%;
+       
+    }
+
+    .sidenav{
+        width: 50%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+    .login-form{
+        
+        margin-top: 50%;
+    }
+
+    .register-form{
+        margin-top: 20%;
+    }
+}
+
+
+.login-main-text{
+    margin-top: 59%;
+    padding: 40px;
+    color: #fff;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+    font-size:30px;
+}
+
+.btn-black{
+    background-color: #000 !important;
+    color: #fff;
+    width: 100%;
+}
+i{
+    background-color: #e9ebef;
+    font-size: 20px;
+    border-color: #635b59;
+    border:1px;
+    border-style: double;
+    border-radius: 2px;
+    padding: 5px;
+}

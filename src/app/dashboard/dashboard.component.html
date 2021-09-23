@@ -1,0 +1,120 @@
+
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="active.js"></script>
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+<body class="home" >
+    
+    <ngx-spinner
+  bdColor="rgba(0, 0, 0, 1)">
+  <img src='https://66.media.tumblr.com/f678ce38eb896bc1d4aaa911958af087/tumblr_n2eccv6Dev1rgpzseo1_1280.gif' />" 
+</ngx-spinner>
+
+    <div class="container-fluid display-table " >
+        
+        <div class="row display-table-row" >
+            
+            <div class=" col-md-2 col-sm-1 hidden-xs display-table-cell v-align box " id="navigation" style="background-color: #0e1a35;">
+                
+                <div class="navi fixed" style="background-color: #0e1a35;">
+                    <div class="logo" >
+                        <a hef=""><img src="https://thd.tn/wp-content/uploads/2017/10/cni.jpg" alt="merkery_logo" class="hidden-xs hidden-sm" style="    -webkit-border-radius: 2px;
+                            -moz-border-radius: 2px;
+                            border-radius: 2px;">
+                            <img src="http://jskrishna.com/work/merkury/images/circle-logo.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
+                        </a>
+                    </div>
+                    <ul>
+                        
+                        <li id="home" (click)="SHome()" class="animate" *ngIf="RoleStat"><a><i class="fa fa-chart-area" aria-hidden="true" Style="color: #438bfc;" ></i><span class="hidden-xs hidden-sm">Statistique</span></a></li>
+                        <li id="Structure" (click)="Sarticle()" class="animate" *ngIf="RoleArticle"><a ><i class="fa fa-tasks" aria-hidden="true" style="color: #85dca9;" ></i><span class="hidden-xs hidden-sm" >Articles <i class="fa fa-arrow-down" style="float: right;color: #f54295;"></i></span></a></li>
+                        
+                        <li id="listarticle" class="animate" [hidden]="Slarticles" style="background-color: darkorange;" (click)="lista()" ><a ><i class="fa fa-table" aria-hidden="true"></i><span class="hidden-xs hidden-sm">List Articles</span></a></li>
+
+                        
+                         
+                         <li id="Commande"  class="animate" (click)="showCommande()" *ngIf="RoleBCI"><a><i class="fa fa-plus" aria-hidden="true" style="color: #a63671;"></i><span class="hidden-xs hidden-sm">Créer Commande Interne</span></a></li>
+                         <li id="Commande"  class="animate" (click)="showCommandeEX()" *ngIf="RoleBCE"><a><i class="fa fa-plus" aria-hidden="true" style="color: #f45e14;"></i><span class="hidden-xs hidden-sm">Créer Commande Externe</span></a></li>
+                         <li id="Structure" class="animate" (click)="listS()" *ngIf="RoleStruct"><a ><i class="fa fa-home" aria-hidden="true" ></i><span class="hidden-xs hidden-sm">Structures</span></a></li>
+                         <li id="Fournisseur" class="animate" (click)="Sfournisseur()" *ngIf="RoleSStruct"><a ><i class="fa fa-building" aria-hidden="true" style="color: #a5892a;"></i><span class="hidden-xs hidden-sm">Sous-Structure <i class="fa fa-arrow-down" style="float: right;color: #f4c413;"></i></span></a></li>
+                         <li id="listfournisseur"  class="animate" [hidden]="Slfournisseur" style="background-color: darkorange;" (click)="listf()"><a ><i class="fa fa-table" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Liste Sous-Structure</span></a></li>
+                        <li id="Users"  class="animate" (click)="showcustomers()" *ngIf="RoleClient"><a ><i class="fa fa-user" aria-hidden="true" style="color: #f54394;"></i><span class="hidden-xs hidden-sm">Utilisateurs</span></a></li>
+                        <li id="Parametre"  class="animate" (click)="showaccount()" *ngIf="RoleGBCI"><a><i class="fa fa-cogs" aria-hidden="true" style="color: #3ac941;"></i><span class="hidden-xs hidden-sm">GestionBCI</span></a></li>
+                        <li id="Parametre"  class="animate" (click)="showGBCE()" *ngIf="RoleGBCE"><a><i class="fa fa-cogs" aria-hidden="true" style="color: #7b8289;"></i><span class="hidden-xs hidden-sm">GestionBCE</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-md-10 col-sm-8 display-table-cell v-align">
+                <div class="user-dashboard wuser" style="float: right;">  
+                    <i class="fa fa-sign-out" aria-hidden="true" style="color: #f4c414;font-size: 24px;float: right;cursor: pointer;" (click)="logout()"></i>
+                   <i class="fa fa-user" aria-hidden="true" style="color: #f4c414;float: left;font-size: 24px;"></i> &nbsp; {{email}} &nbsp;<i class="fa fa-cog" aria-hidden="true" style="color: #f4c414;font-size: 24px;float: right;cursor: pointer;" (click)="Update()">&nbsp;</i>&nbsp;
+                  
+               
+            </div>
+                <div class="user-dashboard" [hidden]="gif" style="margin-top: 3%;" >
+                    <img src="https://i.pinimg.com/originals/0b/8f/72/0b8f72501d1f843a1ddf67784a6e26f9.gif" alt="" class="col-md-9 ml-auto mr-auto">
+                </div>
+                <div class="user-dashboard" [hidden]="Shome" >
+                    <app-statistics ></app-statistics>
+                     </div>
+                <div class="user-dashboard" [hidden]="LS">
+                    
+                    <app-structure-list></app-structure-list>
+                </div>
+                <div class="user-dashboard" [hidden]="Saccount">
+                    <app-commande-list></app-commande-list>>
+                </div>
+                <div class="user-dashboard" [hidden]="Sam">
+                    <app-magasin></app-magasin>
+                </div>
+                <div class="user-dashboard" [hidden]="Saf" >
+                    <app-fournisseur></app-fournisseur>
+                </div>
+                <div class="user-dashboard" [hidden]="SCommande" >
+                    
+                    <app-commande></app-commande>
+                </div>
+                <div class="user-dashboard" [hidden]="SCommandeEX">
+                    
+                    <app-commandebce></app-commandebce>
+                </div>
+                <div class="user-dashboard" [hidden]="Slf" >
+                    
+                    <app-sous-structure></app-sous-structure>
+                </div>
+                <div class="user-dashboard" [hidden]="SaA" >
+                    
+                    <app-article></app-article>
+                </div>
+                <div class="user-dashboard" [hidden]="SlA" style="margin-left: 2%;">
+                    
+                    <app-article-list></app-article-list>
+                </div>
+                <div class="user-dashboard" [hidden]="Sstructure" >
+                </div>
+                <div class="user-dashboard" [hidden]="Scustomers" style="margin-right: 0px;margin-left: 27px;">
+                    
+                    <app-customer-list ></app-customer-list>
+                </div>
+
+                <div class="user-dashboard" [hidden]="Sgbce" >
+                    
+                    <app-gestion-bce></app-gestion-bce>
+                </div >
+                
+                <div class="user-dashboard" [hidden]="update">
+                    <app-account></app-account>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+</body>

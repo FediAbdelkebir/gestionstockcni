@@ -1,0 +1,33 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+<i class="fa fa-refresh" style="font-size: large;color: #fff;" (click)="refresh()"></i>
+<div>
+    <ngx-spinner
+    name="Stat"
+  >
+  </ngx-spinner>
+    <div class="row" Style="margin-left: 10%;">
+        <div class="col-md-3 number animate"><i class="fa fa-user icon " aria-hidden="true" style="color: #fff;font-size: 34px;"></i>
+            <small>Nombres Des Utilisateurs</small><div class="stat">{{Statnbrcustomer}}</div></div>
+        <div class="col-md-3 number animate"><i class="fa fa-tasks icon " aria-hidden="true" style="color: #fff;font-size: 34px;background-color: #de2668;"></i>
+            <small>Nombres Des Articles</small><div class="stat">{{StatnbrArticle}}</div></div>
+        <div class="col-md-3 number animate"><i class="fa fa-home icon " aria-hidden="true" style="color: #fff;font-size: 34px;background-color: #54ad58;"></i>
+            <small>Nombres Des Structures</small><div class="stat">{{StatnbrStructure}}</div></div>
+</div>
+<div class="cards"> 
+    
+    <div>
+        <div style="margin-top: 5%;">
+            <i class="fa fa-chart-pie icon animater" aria-hidden="true" style="color: #fff;font-size: 34px;"></i>
+            <i class="fa fa-chart-line icon animatel" aria-hidden="true" style="color: #fff;font-size: 34px;margin-left: 42.5%;background-color: deeppink;"></i>
+        </div>
+        <canvas id="LineChart"  class="col-md-6 cards " > </canvas>
+        <canvas id="testchart" class="col-md-6 cards " > </canvas>
+    </div>
+
+</div>
+
+</div>

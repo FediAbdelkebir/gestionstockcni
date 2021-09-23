@@ -1,0 +1,111 @@
+<div class="card my-5" [hidden]="show">
+    <div class="card-body bgc">
+      <h2 class="text-center">List Bons des Commandes Externe</h2>
+      <input placeholder="Rechercher..." [(ngModel)]="Filter" style="background-color: #ecf0f1;border:0px;color: #0e1a35;">  
+      <table class="table table-bordered table-striped tcenter">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">code_bce</th>
+            <th scope="col">etat</th>
+            <th scope="col">Date</th>
+            <th scope="col">Management</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of listbce | filter:Filter;">
+            <td>{{x.id}}</td>
+            <td>{{x.code_BCE}}</td>
+            <td>{{x.etat}}</td>
+            <td>{{x.date}}</td>
+            
+            <td>
+              <p class="btn btn-cancel" *ngIf="x.etat=='NonValide' && Role()"> <i class="fas fa-refresh"></i> En Cours De Traitement</p>
+              <p class="btn btn-confirm" [hidden]="!Gerer(x.etat,x.code_BCE)" *ngIf="x.etat!='NonValide' && !isApproved(x.etat)"> <i class="fas fa-check"></i> Approuvé </p>
+              <p class="btn btn-delete" *ngIf="isApproved(x.etat)"> <i class="fas fa-cancel"></i> Réfusé </p>
+              <button (click)="ShowInovice(x.id,x.etat,x.code_BCE,x.date)" class="btn btn-update" [id]="x.code_BCE" [hidden]="Gerer(x.etat,x.code_BCE)"> <i class="fas fa-cogs"></i></button>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+<div> 
+  <i class="fa fa-refresh" style="font-size: large;color: #fff;" (click)="refresh()"></i>
+
+<br><br>
+<div class="container col-8" id="PDFF" #PDFF [hidden]="SINVOICE">
+    <div class="card" Style="border-bottom: 15px solid #1E1F23;
+    border-top: 15px solid #1E1F23;
+    height: 900px;" >
+  <div class="card-header"><br>
+    <div class="col"> <img class="img" alt="Invoce Template" src="http://pngimg.com/uploads/shopping_cart/shopping_cart_PNG59.png" /> </div> <br>
+  Bon de commande : <br>
+  <strong>{{CodeBCE}}</strong><br>
+  Date : <br>
+  <strong>{{Date}}</strong> 
+    <span class="float-right"> <strong>Status:</strong> {{Etat}}</span>
+  
+  </div>
+  <div class="card-body">
+  
+  <div class="table-responsive-sm">
+  <table class="table table-striped">
+  <thead>
+  <tr>
+  <th class="center">#</th>
+  <th>Item</th>
+  
+  <th class="right">Prix Unitaire</th>
+    <th class="center">Qty</th>
+  <th class="right">Totale</th>
+ 
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let x of listINVOICE">
+  <td class="center">{{x[0]}}</td>
+  <td class="left strong">{{x[3]}}</td>
+  
+  <td class="right">{{x[2]/x[1] | currency:' ' }} D</td>
+    <td class="center">{{x[1]}}</td>
+  <td class="right">{{x[2] | currency:' ' }} D</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  <div class="row">
+  <div class="col-lg-4 col-sm-5">
+  
+  </div>
+  
+  <div class="col-lg-4 col-sm-5 ml-auto">
+  <table class="table table-clear">
+  <tbody>
+  <tr>
+  <td class="left">
+  <strong>Totale</strong>
+  </td>
+  <td class="right">
+  <strong>{{TOTAL | currency:' ' }} D</strong>
+  </td>
+  
+  </tr>
+  <tr>
+    <th class="left">Signature : </th>
+  </tr>
+  </tbody>
+  </table>
+ 
+  </div>
+  
+  </div>
+  
+  </div>
+ 
+  </div>
+  <button (click)="ApproveBCE(CodeBCE)" class="btn btn-update" *ngIf="accept">Accepter</button>
+  <button (click)="DeclineBCE(CodeBCE)" class="btn btn-cancel" *ngIf="refuse">Réfuser</button>
+  <Button (click)="exportAsPDF()" class="btn btn-add" *ngIf="download"><i class="fa fa-pdf"></i> Download PDF</Button>
+  <button (click)="close()" class="btn btn-danger"> Close</button>
+  </div>

@@ -1,0 +1,79 @@
+<div class="card my-5" style="background-color: #1c223f;">
+    <div class="card-body bgc">
+      <h2 class="text-center">Gestion Structures</h2>
+      <input placeholder="Rechercher..." [(ngModel)]="Filter" style="background-color:#ecf0f1;border:0px;color: #1c223f;">  
+      <table class="table table-bordered table-striped tcenter">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Code</th>
+            
+            <th scope="col">Lib_Ar</th>
+            <th scope="col">Lib_Latin</th>
+            <th scope="col">Management</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of liststructures | filter:Filter;">
+            <td>{{x.ids}}</td>
+            <td style="width: 100px;">{{x.code}}</td>
+            <td>{{x.lib_ar}}</td>
+            <td>{{x.lib_latin}}</td>
+            <td>
+              <button (click)="Modify(x.ids,x.code,x.lib_ar,x.lib_latin)" class="btn btn-update"><i class="fa fa-refresh" ></i></button>
+              <button (click)="Delete(x.code)" class="btn btn-delete"><i class="fa fa-trash" ></i></button></td>
+              <tr [hidden]="editmode" >
+                <td class="update"></td>
+                
+                <td ><input type="text"[(ngModel)]="structure.code" placeholder="CodeStructure" required 
+                  (ngModelChange)="ASC(structure.code);Cansave();">
+                
+                  <small *ngIf="!structcode" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small></td>
+
+                
+                <td ><input type="text"[(ngModel)]="structure.lib_ar" placeholder="Lib_Arabe" required
+                  (ngModelChange)="ASAR(structure.lib_ar);Cansave();">
+
+                  <small *ngIf="!structar" class="text-danger" style="font-size: 10px;"
+                  >*Veuillez Remplire ce Champ Vide</small></td>
+
+               
+                <td ><input type="text"[(ngModel)]="structure.lib_latin" placeholder="Lib_Latin" required
+                  (ngModelChange)="ASLA(structure.lib_latin);Cansave();">
+
+                  <small *ngIf="!structlb" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide</small></td>
+
+                
+                <td><button (click)="save()" class="btn btn-confirm" [disabled]="cansave"><i class="fa fa-check" ></i></button> <button (click)="cancel()" class="btn btn-cancel" ><i class="fa fa-close" ></i></button>
+                </td>
+          </tr>
+              <tr [hidden]="edit" >
+                <td class="update" style="background-color: #0e1a35;"> {{id}}</td>
+                <td ><input type="text"[(ngModel)]="newcode" disabled></td>
+
+                <td ><input type="text"[(ngModel)]="newlib_ar" (ngModelChange)="NLA(newlib_ar);Canupdate();" placeholder="Nouveau lib_Arabe" required>
+                  <small *ngIf="!structnewar" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide</small></td>
+
+                  
+   
+                <td ><input type="text"[(ngModel)]="newlib_latin" (ngModelChange)="NLL(newlib_latin);Canupdate();" placeholder="Nouveau lib_Arabe" required>
+                  <small *ngIf="!structnewlatin" class="text-danger" style="font-size: 10px;">*Veuillez Remplire ce Champ Vide</small></td>
+
+     
+
+                <td><button (click)="update(id)" class="btn btn-confirm"  [disabled]="canupdate" ><i class="fa fa-check" ></i></button>
+                  <button (click)="cancel()" class="btn btn-cancel"><i class="fa fa-close" ></i></button>
+                </td>
+    
+        
+          </tr>
+        </tbody>
+      </table>
+      <div><button (click)="ajouter()" class="btn btn-delete" [disabled]="disableBtn"><i class="fa fa-plus" style="color: #1f2837;"></i> Ajouter Structure</button></div>
+
+    </div>
+    
+  </div>
+<div> 
+  <i class="fa fa-refresh" style="font-size: large;color: #fff;" (click)="refresh()"></i>
+</div>

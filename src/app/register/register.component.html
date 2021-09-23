@@ -1,0 +1,56 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="register-block">
+    <div class="container">
+	<div class="row">
+		<div class="col-md-4 register-sec">
+		    <h2 class="text-center">Register Now</h2>
+          <form (ngSubmit)="save()" #userForm="ngForm">
+            <div class="form-group">
+               <label>Name</label>
+               <input type="text" class="form-control" placeholder="Name"id="name"  [(ngModel)]="customer.name"name="name">
+            </div>
+            <div class="form-group">
+               <label>Last-Name</label>
+               <input type="text" class="form-control" placeholder="Last-Name"id="lastname"  [(ngModel)]="customer.lastname"name="lastname">
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" class="form-control" placeholder="E-mail"id="email" [(ngModel)]="customer.email" name="email">
+           </div>
+           <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password"id="password"  [(ngModel)]="customer.password"name="password">
+           </div>
+           <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" placeholder="PhoneNumber"id="phonenumber"  [(ngModel)]="customer.tel"name="tel">
+
+         </div>
+         <div class="form-group"  >
+            <label >Roles : </label>
+            <select>
+               <option>--Choose A Role--</option>
+               <option *ngFor="let o of listroles" (click)="Role(o.idrole);Rolename(o.role)">{{o.idrole}} :{{o.role}}</option>
+            </select>
+            <Button type="button" >Clickme</Button>
+         </div>
+         <div class="form-group"  >
+            <label >Structures : </label>
+            <select>
+            <option>--Choose A Structure--</option>
+            <option *ngFor="let o of liststructure" (click)="Structure(o.ids);StructureCode(o.code);Structurear(o.lib_ar);Structurelatin(o.lib_latin)">{{o.ids}} :{{o.lib_ar}}</option>
+         </select></div>
+            <button type="submit" class="btn btn-register">Register</button>
+            <button type="button"class="btn btn-login" (click)="login()">Login</button>
+         </form>
+         
+		</div>
+		<div class="col-md-8 banner-sec">
+	</div>
+</div>
+</div>
+</section>

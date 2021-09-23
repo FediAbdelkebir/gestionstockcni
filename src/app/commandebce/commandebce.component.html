@@ -1,0 +1,118 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container-fluid bg-light " style="margin-top: 5%;">
+	<div class="row align-items-center justify-content-center" style="background-color: #1c223f;border:0px;color: #fff;">
+		<div class="container h-100">
+		  </div>
+<i class="fa fa-search"></i>
+                        <div class="col-md-2">
+							<input placeholder="Rechercher..." [(ngModel)]="Filter" Style="background-color: #1c223f;border:0px;color: #fff;">
+            	        </div>
+					</div>
+					
+</div>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">               
+<section class="our-publication pt-100 pb-70">
+            <div class="container">
+                <div class="row" id="filter">
+                    <div class="col-sm-6 col-lg-3 scrollmenu animater" *ngFor="let x of listArticles | filter:Filter;let index = index;" > 
+                        <div class="single-publication" >
+                            <figure>
+								<div>
+								<canvas #canvas [id]="x.label+1" style="width: 200px;height: 150px;"></canvas>
+							</div>
+        
+                            </figure>
+
+                            <div class="publication-content bgc">
+                                <span class="category">{{x.title}}</span>
+								<h3><a href="#">{{x.label}}</a></h3>
+								
+								<p ngDefaultControl [(ngModel)]="x.QuantiteINITIAl">Quantitie Initial : {{x.QuantiteINITIAl}}</p>
+								<p value="1" [(ngModel)]="x.QuantiteCOURANTE" ngDefaultControl>Quantitie Courrante : {{x.QuantiteCOURANTE}}</p>
+							
+								
+                                
+                                <h4 class="price">{{x.prix | currency:' ' }} D </h4>
+                            </div>
+                            <div class="add-to-cart">
+								<button class="btn btn-bce" (click)="addbce(x)" style="background-color: #f45e14;"><i class="fa fa-plus"></i> Commande Externe</button>
+                            </div>
+                        </div>
+  
+                    </div>
+                
+                </div>
+
+				<i class="fa fa-refresh" style="font-size: large;color: #fff;" (click)="refresh()"></i>
+
+
+
+                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bgc">
+	<h2 class="titleh2">Bande Commande Externe</h2>
+	<table id="cart" class="table table-hover table-condensed" >
+    				<thead>
+						
+						<tr>
+							<th style="width:50%">Produit</th>
+							<th style="width:10%">Prix</th>
+							<th style="width:8%">Quantite</th>
+							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:10%"></th>
+                        </tr>
+                        
+                    </thead>
+                   
+					<tbody *ngFor="let x of bce">
+						<tr [@bounce]>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><i class="fa fa-cart-plus"></i></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin">Article ID : {{x.id}}</h4>
+										<h4 class="nomargin">{{x.title}}</h4>
+										<p>{{x.label}}</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{x.prix | currency:' ' }} D</td>
+							<td data-th="Quantity">
+								<input type="number" class="form-control text-center" value="1" [(ngModel)]="x.QuantiteE" (ngModelChange)="CalculBCE()" [min]="1" required>  
+							</td>
+							<td data-th="Subtotal" class="text-center">{{x.prix * x.QuantiteE | currency:' ' }} D</td>
+							<td class="actions" data-th="">
+                                
+								<button class="btn btn-danger btn-sm" (click)="removeitem(x)" style="background-color: crimson;"><i class="fa fa-trash-o"></i></button>								
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr class="visible-xs">
+							<td class="text-center"><strong>Total 1.99</strong></td>
+						</tr>
+						<tr>
+							<td><button class="btn btn-danger btn-sm" (click)="resetbce()" style="background-color: crimson;"><i class="fa fa-trash" ></i> Vider Pannier </button></td>
+							<td colspan="2" class="hidden-xs"></td>
+							<td class="hidden-xs text-center">Demandeur : <select style="color: black;"> 
+								
+								<option *ngFor="let o of listsousstructure" (click)="SousStructureid(o.ids);SousStructurenom(o.nom)" style="color: black;">{{o.ids}} :{{o.nom}}</option>
+							 </select></td>
+							<td class="hidden-xs text-center"><strong>Total {{RESULTBCE | currency:' ' }} D</strong></td>
+							<td><button class="btn btn-success btn-block" (click)="CheckoutBCE()" style="background-color: #f45e14;"  [disabled]="disabledCheckout">Commander <i class="fa fa-angle-right"></i></button></td>
+						</tr>
+					</tfoot>
+				</table>
+</div>
+		</div>
+</section>        
+        

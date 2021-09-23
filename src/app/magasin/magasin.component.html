@@ -1,0 +1,33 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="register-block">
+    <div class="container">
+	<div class="row">
+		<div class="col-md-4 register-sec">
+		    <h2 class="text-center">Add Market</h2>
+          <form (ngSubmit)="save()" #userForm="ngForm">
+            <div class="form-group">
+               <label>Name</label>
+               <input type="text" class="form-control" placeholder="Name"id="magasin"  [(ngModel)]="magasin.magasin" name="magasin">
+            </div>
+            <div class="form-group">
+              <label>Adresse</label>
+              <input type="text" class="form-control" placeholder="Adresse"id="adr" [(ngModel)]="magasin.adr" name="adr">
+           </div>
+           <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" placeholder="PhoneNumber"id="num"  [(ngModel)]="magasin.num"name="num">
+         </div>
+            <button type="submit" class="btn btn-register">Register Market</button>
+         
+         </form>
+
+		</div>
+		<div class="col-md-8 banner-sec">
+	</div>
+</div>
+</div>
+</section>

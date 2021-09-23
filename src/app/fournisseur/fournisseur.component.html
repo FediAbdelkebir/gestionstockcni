@@ -1,0 +1,33 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="register-block">
+    <div class="container">
+	<div class="row">
+		<div class="col-md-4 register-sec">
+		    <h2 class="text-center">Ajouter Fournisseur</h2>
+          <form (ngSubmit)="save()" #userForm="ngForm">
+            <div class="form-group">
+               <label>Nom</label>
+               <input type="text" class="form-control" placeholder="Name"id="nomfournisseur"  [(ngModel)]="Fournisseur.nomf"name="nomf">
+            </div>
+            <div class="form-group">
+              <label>Prenom</label>
+              <input type="text" class="form-control" placeholder="Adresse"id="adresssefournisseur" [(ngModel)]="Fournisseur.adrf" name="adrf">
+           </div>
+           <div class="form-group">
+            <label>Télephone</label>
+            <input type="text" class="form-control" placeholder="PhoneNumber"id="numerofournisseur"  [(ngModel)]="Fournisseur.numf"name="numf">
+         </div>
+            <button type="submit" class="btn btn-register">Inscription</button>
+         
+         </form>
+
+		</div>
+		<div class="col-md-8 banner-sec">
+	</div>
+</div>
+</div>
+</section>

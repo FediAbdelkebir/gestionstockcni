@@ -1,0 +1,52 @@
+<div class="card my-5 bgc">
+    <div class="card-body">
+      <h2 class="text-center">List Fournisseurs</h2>
+      <input placeholder="Rechercher..." [(ngModel)]="Filter" style="background-color: #1c223f;border:0px;color: #fff;">  
+      <table class="table table-bordered table-striped tcenter">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Addresse</th>
+            <th scope="col">Télephone</th>
+            <th scope="col">Management</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of listproviders | filter:Filter;">
+            <td>{{x.idf}}</td>
+            <td >{{x.nomf}}</td>
+            <td >{{x.adrf}}</td>
+            <td >{{x.numf}}</td>
+            <td>
+              <button (click)="Modify(x.idf,x.nomf,x.adrf,x.numf)" class="btn btn-update">Modifier</button>
+              <button (click)="Delete(x.idf)" class="btn btn-delete">Supprimer</button></td>
+              <br>
+          </tr>
+          <tr [hidden]="editmode" >
+            <td class="update"></td>
+            <td ><input type="text"[(ngModel)]="Fournisseur.nomf"></td>
+            <td ><input type="text"[(ngModel)]="Fournisseur.adrf"></td>
+            <td ><input type="text"[(ngModel)]="Fournisseur.numf"></td>
+            <td><button (click)="save()" class="btn btn-confirm" >Confirmer</button> <button (click)="cancel()" class="btn btn-cancel" >Refuser</button>
+            </td>
+      </tr>
+          <tr [hidden]="edit" >
+            <td class="update"> {{idf}}</td>
+            <td ><input type="text"[(ngModel)]="newnom" ></td>
+            <td ><input type="text"[(ngModel)]="newadrf"></td>
+            <td ><input type="text"[(ngModel)]="newnumf"></td>
+            <td><button (click)="update(idf)" class="btn btn-confirm" >Mis A Jour</button>
+              <button (click)="cancel()" class="btn btn-cancel" >Refuser</button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+      <div><button (click)="ajouter()" class="btn btn-delete" [disabled]="disableBtn"><i class="fa fa-plus" style="color: #1f2837;"></i> Ajouter Provider</button></div>
+    </div>
+    
+  </div>
+<div> 
+  <i class="fa fa-refresh" style="font-size: large;color: #fff;" (click)="refresh()"></i>
+</div>

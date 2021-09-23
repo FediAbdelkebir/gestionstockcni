@@ -1,0 +1,45 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="register-block">
+    <div class="container">
+	<div class="row">
+		<div class="col-md-4 register-sec">
+		    <h2 class="text-center">Add Article</h2>
+          <form (ngSubmit)="save()" #userForm="ngForm">
+            <div class="form-group">
+               <label>Titre</label>
+               <input type="text" class="form-control" placeholder="Title"id="title"  [(ngModel)]="article.title" name="title">
+            </div>
+            <div class="form-group">
+              <label>Label</label>
+              <input type="text" class="form-control" placeholder="Label"id="label" [(ngModel)]="article.label" name="label">
+           </div>
+           <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" placeholder="Description"id="description"  [(ngModel)]="article.description"name="description">
+         </div>
+         <div class="form-group">
+            <label>Stock Initial</label>
+            <input type="text" class="form-control" placeholder="Stockinit"id="Stockinit"  [(ngModel)]="article.Stockinit"name="Stockinit">
+         </div>
+         <div class="form-group">
+            <label>Stock Total</label>
+            <input type="text" class="form-control" placeholder="StockTotal"id="StockTotal"  [(ngModel)]="article.StockTotal"name="StockTotal">
+         </div>
+         <div class="form-group">
+            <label>Prix</label>
+            <input type="text" class="form-control" placeholder="Price"id="prix"  [(ngModel)]="article.prix"name="prix">
+         </div>
+            <button type="submit" class="btn btn-register">Inscrire Article</button>
+         
+         </form>
+
+		</div>
+		<div class="col-md-8 banner-sec">
+	</div>
+</div>
+</div>
+</section>

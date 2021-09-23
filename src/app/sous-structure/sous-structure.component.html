@@ -1,0 +1,48 @@
+<div class="card my-5 bgc">
+    <div class="card-body">
+      <h2 class="text-center">Gestion Sous-Structure</h2>
+      <input placeholder="Rechercher..." [(ngModel)]="Filter" style="background-color: #ecf0f1;;border:0px;color: #0e1a35;">  
+      <table class="table table-bordered table-striped tcenter">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Management</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of listsoustructure | filter:Filter;">
+            <td>{{x.ids}}</td>
+            <td >{{x.nom}}</td>
+            <td>
+              <button (click)="Modify(x.nom)" class="btn btn-update"><i class="fa fa-refresh" ></i></button>
+              <button (click)="Delete(x.nom)" class="btn btn-delete"><i class="fa fa-trash" ></i></button></td>
+              <br>
+          </tr>
+          <tr [hidden]="editmode" >
+            <td class="update"></td>
+            <td ><input type="text" [(ngModel)]="nom" required placeholder="Nom Sous-Structure" (ngModelChange)="AN(nom);Cansave()" required >
+              <small *ngIf="!articlenom" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small>
+            </td>
+            <td><button (click)="save(nom)" class="btn btn-confirm" [disabled]="cansave"><i class="fa fa-check" ></i></button> <button (click)="cancel()" class="btn btn-cancel" ><i class="fa fa-close" ></i></button>
+            </td>
+      </tr>
+          <tr [hidden]="edit" >
+            <td class="update"> {{ids}}</td>
+            <td ><input type="text"[(ngModel)]="newname" required placeholder="Nouveaux Nom Sous-Structure" (ngModelChange)="NN(newname);Canupdate()">
+              <small *ngIf="!newstructname" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small>
+            </td>
+            <td><button (click)="update(nom,newname)" class="btn btn-confirm" [disabled]="canupdate"><i class="fa fa-check" ></i></button>
+              <button (click)="cancel()" class="btn btn-cancel" ><i class="fa fa-close" ></i></button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+      <div><button (click)="ajouter()" class="btn btn-delete" [disabled]="disableBtn"><i class="fa fa-plus" style="color: #1f2837;"></i> Ajouter SousStructure</button></div>
+    </div>
+    
+  </div>
+<div> 
+  <i class="fa fa-refresh" style="font-size: large;color: #fff;" (click)="refresh()"></i>
+</div>

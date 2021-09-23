@@ -1,0 +1,96 @@
+<div class="card my-5 bgc" >
+    <div class="card-body">
+      <h2 class="text-center">Gestion Utilisateurs</h2>
+      <input placeholder="Rechercher..." [(ngModel)]="Filter" style="background-color: #ecf0f1;;border:0px;color: #1c223f;">  
+      <table class="table table-bordered table-striped tcenter">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">MotDePass</th>
+            <th scope="col">Télephone</th>
+            <th scope="col">Structure id</th>
+            <th scope="col">Role id</th>
+            <th style="width: 50px;"><i class="fa fa-gear"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of listcustomers | filter:Filter;let i=index">
+            <td>{{x.id}}</td>
+            <td>{{x.name}}</td>
+            <td>{{x.lastname}}</td>
+            <td>{{x.email}}</td>
+            <td>{{convertPassword(x.password)}}</td>
+            <td>{{x.tel}}</td>
+            <td>{{CodeStructure}}</td>
+            <td >{{listallroles[i]}}</td>
+            <td >
+              <button (click)="Modify(x.id,x.name,x.lastname,x.email,x.password,x.tel)"  class="btn btn-update"><i class="fa fa-refresh"></i></button>
+              <button (click)="Delete(x.id)" class="btn btn-delete"><i class="fa fa-trash"  ></i></button></td>
+              <tr [hidden]="editmode" >
+                <td class="update"> {{id}}</td>
+                <td ><input type="text"[(ngModel)]="newname" (ngModelChange)="NCname(newname);Canupdate()">
+                  <small *ngIf="!newcustomername" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small>
+              
+                </td>
+                <td ><input type="text"[(ngModel)]="newlastname" (ngModelChange)="NClastname(newlastname);Canupdate()">
+                  <small *ngIf="!newlastname" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small>
+              
+                </td>
+                <td ><input type="text"[(ngModel)]="newemail" (ngModelChange)="NCemail(newemail);Canupdate()" style="width: 170px;">
+                  <small *ngIf="!newcustomeremail" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small>
+              
+                </td>
+                <td ><input type="text"[(ngModel)]="newpassword" (ngModelChange)="NCpassword(newpassword);Canupdate()">
+                  <small *ngIf="!newcustomerpassword" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small>
+              
+                </td>
+                <td ><input type="text"[(ngModel)]="newtel" minlength="8" (ngModelChange)="NCtel(newtel);Canupdate()" (ngModelChange)="NCname(newname);Canupdate()" style="width: 80px;">
+                
+                  <small *ngIf="!newcustomertel" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small>
+              
+                </td>
+                <td >{{CodeStructure}}</td>
+                <td class="material-icons"><select style="width: 100px;font-size: small;">
+                  <option *ngFor="let o of listroles" (click)="Role(o.idrole);Rolename(o.role)" [(ngModel)]="newrole" style="font-size: small;"  ngDefaultControl>{{o.idrole}} :{{o.role}}</option>
+               </select></td>
+                <td><button (click)="update(id)" class="btn btn-update" [disabled]="canupdate"><i class="fa fa-check " ></i></button>
+                  <button (click)="cancelu()" class="btn btn-delete"><i class="fa fa-close "  ></i></button>
+                </td>
+            </tr>
+            
+              <tr [hidden]="edit" >
+                <td class="update">+</td>
+                <td ><input type="text"[(ngModel)]="customer.name" required placeholder="Nom" (ngModelChange)="Cname(customer.name);Cansave()">
+                  <small *ngIf="!customername" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small>
+                </td>
+                <td ><input type="text"[(ngModel)]="customer.lastname" required placeholder="Prenom" (ngModelChange)="Clastname(customer.lastname);Cansave()">
+                  <small *ngIf="!customerlastname" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small>
+                </td>
+                <td ><input type="text"[(ngModel)]="customer.email" required placeholder="E-mail" (ngModelChange)="Cemail(customer.email);Cansave()" style="width: 170px;">
+                  <small *ngIf="!customeremail" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small> </td>
+                <td ><input type="text"[(ngModel)]="customer.password" style="width: 250px;" required placeholder="Mot de pass" (ngModelChange)="Cpassword(customer.password);Cansave()" style="width: 130px;">
+                  <small *ngIf="!customerpassword" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small></td>
+                <td ><input type="text"[(ngModel)]="customer.tel" minlength="8" required placeholder="Télephone" (ngModelChange)="Ctel(customer.tel);Cansave()" style="width: 80px;">
+                  <small *ngIf="!customertel" class="text-danger" style="font-size: 10px;" >*Veuillez Remplire ce Champ Vide</small></td>
+                <td>{{CodeStructure}}</td>
+                <td class="material-icons"><select style="width: 100px;" required>
+                  <option style="width: 100px;">Role</option>
+                  <option *ngFor="let o of listroles" (click)="Role(o.idrole);Rolename(o.role)">{{o.idrole}} :{{o.role}}</option>
+               </select></td>
+               <td style="width: 50px;"><button (click)="save()" class="btn btn-confirm" [disabled]="cansave"><i class="fa fa-check "  ></i></button>
+                <button (click)="cancel()" class="btn btn-delete"><i class="fa fa-close " ></i></button>
+               </td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="ajouter()" class="btn btn-add" [disabled]="disableBtn"><i class="fa fa-plus" style="color: #1f2837;"></i> Ajouter Utilisateur</button>
+    </div>
+    
+  </div>
+<div> 
+  <i class="fa fa-refresh" style="font-size: large;color: #fff;" (click)="refresh()"></i>
+</div>
+

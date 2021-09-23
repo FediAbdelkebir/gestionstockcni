@@ -1,0 +1,52 @@
+<input type="text" class="form-control " maxlength="64" placeholder="Search" style="width: 300px;margin-left: 380px;"/>
+<div class="card my-5 bgc">
+    <div class="card-body">
+      <h2 class="text-center">List Magasins</h2>
+      <table class="table table-bordered table-striped tcenter">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Management</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of listmarkets">
+            <td>{{x.id}}</td>
+            <td>{{x.magasin}}</td>
+            <td>{{x.adr}}</td>
+            <td>{{x.num}}</td>
+            <td>
+              <button (click)="Modify(x.id,x.magasin,x.adr,x.num)" class="btn btn-update">Modify</button>
+              <button (click)="Delete(x.id)" class="btn btn-delete">Delete</button></td>
+              <tr [hidden]="editmode" >
+                <td class="update"></td>
+                <td ><input type="text"[(ngModel)]="Magasin.magasin"></td>
+                <td ><input type="text"[(ngModel)]="Magasin.adr"></td>
+                <td ><input type="text"[(ngModel)]="Magasin.num"></td>
+                <td><button (click)="save()" class="btn btn-confirm" >Confirm</button> <button (click)="cancel()" class="btn btn-cancel" >Cancel</button>
+                </td>
+          </tr>
+              <tr [hidden]="edit" >
+                <td class="update"> {{id}}</td>
+                <td ><input type="text"[(ngModel)]="newmagasin" ></td>
+                <td ><input type="text"[(ngModel)]="newadrm"></td>
+                <td ><input type="text"[(ngModel)]="newnumm"></td>
+                <td><button (click)="update(id)" class="btn btn-confirm" >Update</button>
+                  <button (click)="cancel()" class="btn btn-cancel" >Cancel</button>
+                </td>
+    
+        
+          </tr>
+        </tbody>
+      </table>
+      <div><button (click)="ajouter()" class="btn btn-delete" [disabled]="disableBtn"><i class="fa fa-plus" style="color: #1f2837;"></i> Add Market</button></div>
+
+    </div>
+    
+  </div>
+<div> 
+  <button (click)="refresh()" class="btn btn-refresh">Refresh</button>
+</div>
